@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector: 
+    app: second-app # matchLabel 이 존재하지 않는다. 
+    # tier: backend 
+    # tier를 지정하지 않고, 오로지 app 이름만을 보고, 관리도 가능하다. 
+    # 즉, 다른 리소스의 app도 제어가 가능하다는 것이다(tier 를 정하지 않으면)
+  ports:
+    - protocol: 'TCP'
+      port: 80
+      targetPort: 8080
+    # - protocol: 'TCP'
+    #   port: 443
+    #   targetPort: 443
+  type: LoadBalancer
+  # ClusterIP - 기본 값으로 내부에서 노출되는 IP
+  # NodePort - 클러스터 내부에서만 액세스 할 수 있음 
+  # LoadBalancer - 외부 세계와의 연결용. 들어오는 트래픽을 pod 기준으로 균등하게 분배해주는 것을 자동으로 지원
