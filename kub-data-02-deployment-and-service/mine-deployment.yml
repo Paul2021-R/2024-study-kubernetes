@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haryu-story-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: haryu-story
+  template:  
+    metadata:
+      labels:
+        app: haryu-story
+    spec:
+      containers:
+        - name: haryu-story
+          image: axel9309/kub-data-demo:1
